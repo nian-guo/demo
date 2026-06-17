@@ -4,16 +4,23 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  // GitHub Pages 部署基础路径，仓库名demo
-  base: "/demo/",
+  base: "./",
   plugins: [vue(), tailwindcss()],
   resolve: {
     alias: {
-      // @ 映射 src 文件夹
       '@': path.resolve(__dirname, 'src')
     }
   },
-  // 本地开发接口代理
+  build: {
+    // 每次打包拼接时间戳，文件名永远不重复，彻底避开缓存匹配旧资源
+    rollupOptions: {
+      output: {
+        chunkFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        entryFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        assetFileNames: `assets/[name]-[hash]-${Date.now()}.[ext]`
+      }
+    }
+  },
   server: {
     proxy: {
       '/xiaomai': {
