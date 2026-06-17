@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ===== CSS Variables ===== */
+:root {
+  --primary: #d4a853;
+  --primary-dark: #b8943a;
+  --primary-light: #f0d57a;
+  --accent: #5b8c5a;
+  --accent-dark: #3d6b3c;
+  --bg-dark: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #242424;
+  --bg-surface: #161616;
+  --text-primary: #f5f0e8;
+  --text-secondary: #a09888;
+  --text-muted: #6b6457;
+  --border: #2a2822;
+  --border-light: #3a3830;
+  --gold-gradient: linear-gradient(135deg, #d4a853, #c49b3c, #b8860b);
+  --green-gradient: linear-gradient(135deg, #5b8c5a, #4a7a49, #3d6b3c);
+  --dark-gradient: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+  --card-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,83,0.08);
+  --card-shadow-hover: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,168,83,0.2);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ===== Glass Effect ===== */
+.glass {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.glass-light {
+  background: rgba(30, 30, 30, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-light);
+}
+
+/* ===== Gold Text Gradient ===== */
+.text-gold {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Animated Border ===== */
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(212,168,83,0.3); }
+  50% { border-color: rgba(212,168,83,0.8); }
+}
+
+.border-glow {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+/* ===== Float Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ===== Gradient Background Animation ===== */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== Pulse Dot ===== */
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,83,0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(212,168,83,0); }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* ===== Page Transition ===== */
+.page-enter-active {
+  animation: pageIn 0.4s var(--transition-smooth);
+}
+.page-leave-active {
+  animation: pageOut 0.25s var(--transition-smooth);
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pageOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
+/* ===== Page Container ===== */
+:root {
+  --page-max-width: 1400px;
+}
+.page-container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: var(--page-max-width);
+  transition: max-width 0.35s var(--transition-smooth);
+}
+
+/* ===== Element Plus Overrides ===== */
+.el-button--primary {
+  --el-button-bg-color: var(--primary);
+  --el-button-border-color: var(--primary);
+  --el-button-hover-bg-color: var(--primary-dark);
+  --el-button-hover-border-color: var(--primary-dark);
+}
+.el-menu {
+  --el-menu-bg-color: transparent;
+  --el-menu-text-color: var(--text-secondary);
+  --el-menu-hover-bg-color: rgba(212,168,83,0.08);
+  --el-menu-active-color: var(--primary);
+}
+.el-card {
+  --el-card-bg-color: var(--bg-card);
+  --el-card-border-color: var(--border);
+}
+.el-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: var(--bg-surface);
+  --el-table-border-color: var(--border);
+  --el-table-text-color: var(--text-primary);
+  --el-table-header-text-color: var(--text-secondary);
+  --el-table-row-hover-bg-color: var(--bg-card-hover);
+}
+.el-input__wrapper {
+  background-color: var(--bg-surface) !important;
+  box-shadow: 0 0 0 1px var(--border) !important;
+}
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--border-light) !important;
+}
+.el-input__inner {
+  color: var(--text-primary) !important;
+}
+.el-select .el-input .el-input__wrapper {
+  background-color: var(--bg-surface) !important;
+}
+.el-dialog {
+  --el-dialog-bg-color: var(--bg-card);
+  --el-dialog-border-radius: 1rem;
+}
+.el-pagination {
+  --el-pagination-bg-color: transparent;
+  --el-pagination-text-color: var(--text-secondary);
+}
