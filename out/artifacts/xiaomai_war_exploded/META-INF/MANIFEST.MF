@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: Lenovo
-Build-Jdk: Oracle OpenJDK 19.0.2
-Implementation-Title: 小麦溯源后端
-Implementation-Version: 1.0-SNAPSHOT
-Implementation-Vendor-Id: org.example
-Main-Class: ${start-class}
-
