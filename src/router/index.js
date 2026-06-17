@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
@@ -83,7 +83,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  // 关键修改：hash路由模式，适配GitHub Pages静态站点
+  history: createWebHashHistory(),
   routes
 })
 
